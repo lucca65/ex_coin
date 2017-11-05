@@ -20,7 +20,8 @@ defmodule ExCoin.MerkleTree do
 
   def build(blocks) do
     initial_height = 0
-    Enum.map(blocks, &build_first_block/1)
+    blocks
+    |> Enum.map(&build_first_block/1)
     |> build_tree(initial_height)
   end
 
@@ -52,7 +53,7 @@ defmodule ExCoin.MerkleTree do
   end
 
   def is_power_of_n(n, blocks) do
-    (:math.log2(blocks) / :math.log2(n))
-    |> ( fn x -> Float.ceil(x) == Float.floor(x) end ).()
+    log2 = (:math.log2(blocks) / :math.log2(n))
+    Float.ceil(log2) == Float.floor(log2)
   end
 end

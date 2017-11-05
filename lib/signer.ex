@@ -7,7 +7,7 @@ defmodule ExCoin.Signer do
     {message, signature, public_key}
   end
 
-  def is_valid?({ message, signature, public_key }) do
+  def is_valid?({message, signature, public_key}) do
     :crypto.verify(:ecdsa, :sha256, message, signature, [public_key, @curve])
   end
 
