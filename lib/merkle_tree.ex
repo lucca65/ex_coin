@@ -1,7 +1,18 @@
-defmodule ExCoin.Merkle do
-  alias ExCoin.Merkle.Node
+defmodule ExCoin.MerkleTree do
+  alias ExCoin.MerkleTree.Node
+  defstruct [:root, :blocks]
 
   @number_of_children 2
+
+  @type t :: %__MODULE__{
+    root: Node.t,
+    blocks: [String.t, ...]
+  }
+
+  def new(blocks) when blocks != [] do
+    root = build(blocks)
+    %__MODULE__{root: root, blocks: blocks}
+  end
 
   def build(blocks) do
     Enum.map(blocks, &build_block/1)
