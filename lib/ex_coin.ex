@@ -3,7 +3,7 @@ defmodule ExCoin do
   Documentation for ExCoin.
   """
 
-  @docs"""
+  @doc """
   Hash a value with SHA_256
   """
   @spec hash(String.t) :: String.t
