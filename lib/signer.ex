@@ -21,7 +21,7 @@ defmodule ExCoin.Signer do
     signature = sign(message, private_key)
 
     if is_valid?(message, signature, public_key) do
-      signature
+      {:ok, signature}
     else
       {:error, :invalid_signature}
     end
