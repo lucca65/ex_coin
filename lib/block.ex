@@ -1,6 +1,8 @@
 defmodule ExCoin.Block do
   defstruct [:index, :previous_hash, :timestamp, :data, :nounce, :hash]
 
+  alias ExCoin.Block
+
   @type t :: %__MODULE__{
     index: Integer.t,
     previous_hash: String.t,

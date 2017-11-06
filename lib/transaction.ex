@@ -17,14 +17,14 @@ defmodule ExCoin.Transaction do
 
   defstruct [:transfer, :timestamp, :signature]
 
+  alias ExCoin.Transaction
+
   @type t :: %__MODULE__{
-    transfer: %Transfer.t ,
+    transfer: Transfer.t,
     timestamp: {Integer.t, Integer.t, Integer.t},
     signature: String.t
   }
 
   def to_string(%Transaction{} = transaction) do
-    
   end
-
 end
