@@ -4,7 +4,7 @@ defmodule ExCoin.Block do
   @type t :: %__MODULE__{
     index: Integer.t,
     previous_hash: String.t,
-    timestamps: {Integer.t, Integer.t, Integer.t},
+    timestamp: {Integer.t, Integer.t, Integer.t},
     data: String.t,
     nounce: Integer.t,
     hash: String.t
