@@ -1,4 +1,4 @@
-defmodule ExCoins.Wallet do
+defmodule ExCoins.Blockchain.Wallet do
   @moduledoc """
   Wallet structure and basic functions
   """

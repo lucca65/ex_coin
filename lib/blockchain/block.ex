@@ -1,7 +1,7 @@
-defmodule ExCoin.Block do
+defmodule ExCoin.Blockchain.Block do
   defstruct [:index, :previous_hash, :timestamp, :data, :nounce, :hash]
 
-  alias ExCoin.Block
+  alias ExCoin.Blockchain.Block
 
   @type t :: %__MODULE__{
     index: Integer.t,
@@ -25,6 +25,6 @@ defmodule ExCoin.Block do
 
   def hash_block(%Block{index: i, previous_hash: h, timestamp: timestamp, data: d, nounce: n}) do
     "#{i}#{h}#{timestamp}#{d}#{n}"
-    |> ExCoin.hash()
+    |> ExCoin.Signer.hash()
   end
 end

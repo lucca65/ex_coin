@@ -27,7 +27,7 @@ defmodule ExCoin.MerkleTree do
 
   def build_first_block(block) do
     %Node{
-      value: ExCoin.hash(block),
+      value: ExCoin.Signer.hash(block),
       children: [],
       height: 0
     }
@@ -44,7 +44,7 @@ defmodule ExCoin.MerkleTree do
 
       # Parent node hash is calculated by the concat of its children
       %Node{
-        value: ExCoin.hash(concatenated),
+        value: ExCoin.Signer.hash(concatenated),
         children: partition,
         height: height + 1
       }

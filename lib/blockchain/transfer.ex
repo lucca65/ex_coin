@@ -1,4 +1,4 @@
-defmodule ExCoins.Transfer do
+defmodule ExCoins.Blockchain.Transfer do
   @moduledoc """
   Defines a basic transfer operation
 
@@ -18,4 +18,10 @@ defmodule ExCoins.Transfer do
     recipient: String.t,
     amount: Integer.t
   }
+
+  alias ExCoins.Blockchain.Transfer
+
+  def to_json(%Transfer{} = transfer) do
+    Poison.encode(transfer)
+  end
 end
