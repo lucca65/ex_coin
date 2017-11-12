@@ -14,15 +14,15 @@ defmodule ExCoin.ProofOfWorkTest do
   end
 
   test "calculate number of 0 in hash prefix" do
-    assert ProofOfWork.calculate0Prefix("01234567") === 1
-    assert ProofOfWork.calculate0Prefix("00012345") === 3
-    assert ProofOfWork.calculate0Prefix("12345000") === 0
+    assert ProofOfWork.calculate_0_prefix("01234567") === 1
+    assert ProofOfWork.calculate_0_prefix("00012345") === 3
+    assert ProofOfWork.calculate_0_prefix("12345000") === 0
   end
 
   test "calculate number of 0 in prefix from difficulty" do
-    assert ProofOfWork.calculate0Sequence(1) === 0
-    assert ProofOfWork.calculate0Sequence(100) === 3
-    assert ProofOfWork.calculate0Sequence(100_000_000) === 13
+    assert ProofOfWork.calculate_0_sequence(1) === 0
+    assert ProofOfWork.calculate_0_sequence(100) === 3
+    assert ProofOfWork.calculate_0_sequence(100_000_000) === 13
   end
 
   test "verify block from proof of work", %{blockchain: blockchain, invalid: invalid, valid: valid} do
@@ -31,7 +31,7 @@ defmodule ExCoin.ProofOfWorkTest do
   end
 
   test "miner new block", %{blockchain: blockchain, invalid: invalid, valid: valid} do
-    assert ProofOfWork.minerBlock(blockchain, invalid) === valid
+    assert ProofOfWork.miner_block(blockchain, invalid) === valid
   end
 
 end

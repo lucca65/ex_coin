@@ -4,7 +4,7 @@ defmodule ExCoin.ProofOfWork do
   alias ExCoin.Blockchain
   alias ExCoin.Blockchain.Block
 
-  def minerBlock(blockchain, block) do
+  def miner_block(blockchain, block) do
     is_valid? = blockchain
     |> verify(block)
     if is_valid? do
@@ -20,14 +20,14 @@ defmodule ExCoin.ProofOfWork do
 
   def verify(%Blockchain{difficulty: difficulty}, %Block{hash: hash}) do
     sequences = difficulty
-    |> calculate0Sequence()
+    |> calculate_0_sequence()
 
     hash
-    |> calculate0Prefix()
+    |> calculate_0_prefix()
     |> Kernel.>=(sequences)
   end
 
-  def calculate0Sequence(difficulty) when is_integer(difficulty) and difficulty > 0 do
+  def calculate_0_sequence(difficulty) when is_integer(difficulty) and difficulty > 0 do
     log2 = :math.log(2)
     difficulty
     |> :math.log()
@@ -35,12 +35,12 @@ defmodule ExCoin.ProofOfWork do
     |> round()
   end
 
-  def calculate0Prefix(hash) when is_bitstring(hash) do
+  def calculate_0_prefix(hash) when is_bitstring(hash) do
     hash
     |> String.split("")
-    |> calculate0Prefix(0)
+    |> calculate_0_prefix(0)
   end
-  def calculate0Prefix(["0"|tail], acc), do: calculate0Prefix(tail, acc + 1)
-  def calculate0Prefix(_notInit0, acc), do: acc
+  def calculate_0_prefix(["0"|tail], acc), do: calculate_0_prefix(tail, acc + 1)
+  def calculate_0_prefix(_notInit0, acc), do: acc
 
 end
