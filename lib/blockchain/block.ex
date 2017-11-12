@@ -1,5 +1,5 @@
 defmodule ExCoin.Blockchain.Block do
-  defstruct [:index, :previous_hash, :timestamp, :data, :nounce, :hash]
+  defstruct [:index, :previous_hash, :timestamp, :data, :nonce, :hash]
 
   alias ExCoin.Blockchain.Block
 
@@ -8,7 +8,7 @@ defmodule ExCoin.Blockchain.Block do
     previous_hash: String.t,
     timestamp: {Integer.t, Integer.t, Integer.t},
     data: String.t,
-    nounce: Integer.t,
+    nonce: Integer.t,
     hash: String.t
   }
 
@@ -23,8 +23,15 @@ defmodule ExCoin.Blockchain.Block do
     %{block | hash: hash_block(block)}
   end
 
-  def hash_block(%Block{index: i, previous_hash: h, timestamp: timestamp, data: d, nounce: n}) do
+  def update_nonce(block, nonce) do
+    hash = %{block | nonce: nonce}
+    |> hash_block()
+    %{block | hash: hash, nonce: nonce}
+  end
+
+  def hash_block(%Block{index: i, previous_hash: h, timestamp: timestamp, data: d, nonce: n}) do
     "#{i}#{h}#{timestamp}#{d}#{n}"
     |> ExCoin.Signer.hash()
   end
+
 end

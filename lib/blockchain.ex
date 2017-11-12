@@ -9,5 +9,5 @@ defmodule ExCoin.Blockchain do
   - block: a list of ordered transaction with some extra data to prove validity
   """
 
-  defstruct [:address, :transaction, :block, :ledger]
+  defstruct [:address, :difficulty, :transaction, :block, :ledger]
 end
