@@ -27,7 +27,7 @@ defmodule ExCoin.ProofOfWork do
     |> Kernel.>=(sequences)
   end
 
-  def calculate0Sequence(difficulty) do
+  def calculate0Sequence(difficulty) when is_integer(difficulty) and difficulty > 0 do
     log2 = :math.log(2)
     difficulty
     |> :math.log()
@@ -35,7 +35,7 @@ defmodule ExCoin.ProofOfWork do
     |> round()
   end
 
-  def calculate0Prefix(hash) do
+  def calculate0Prefix(hash) when is_bitstring(hash) do
     hash
     |> String.split("")
     |> calculate0Prefix(0)
