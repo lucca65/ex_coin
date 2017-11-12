@@ -23,7 +23,7 @@ defmodule ExCoin.ProofOfWork do
     |> calculate0Sequence()
 
     hash
-    |> calculate0Sequence()
+    |> calculate0Prefix()
     |> Kernel.>=(sequences)
   end
 
@@ -37,7 +37,7 @@ defmodule ExCoin.ProofOfWork do
 
   def calculate0Prefix(hash) do
     hash
-    |> String.split()
+    |> String.split("")
     |> calculate0Prefix(0)
   end
   def calculate0Prefix(["0"|tail], acc), do: calculate0Prefix(tail, acc + 1)
