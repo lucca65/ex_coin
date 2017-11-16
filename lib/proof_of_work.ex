@@ -14,7 +14,7 @@ defmodule ExCoin.ProofOfWork do
       |> Block.update_nonce(block.nonce + 1)
 
       blockchain
-      |> minerBlock(new_block)
+      |> miner_block(new_block)
     end
   end
 
