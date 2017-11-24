@@ -13,6 +13,10 @@ defmodule ExCoin.Blockchain.Transaction do
     signature: "signed transaction hash"
   }
   ```
+
+  ### Observations
+
+  Used Ethereum way for this: https://github.com/ethereum/go-ethereum/blob/ef0edc6e32d98d2fca54076f38cb317f43704900/core/types/transaction.go
   """
 
   defstruct [:transfer, :public_key, :signature]
