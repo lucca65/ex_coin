@@ -5,8 +5,7 @@ defmodule ExCoin.ProofOfWork do
   alias ExCoin.Blockchain.Block
 
   def miner_block(blockchain, block) do
-    is_valid? = blockchain
-    |> verify(block)
+    is_valid? = blockchain |> verify(block)
     if is_valid? do
       block
     else

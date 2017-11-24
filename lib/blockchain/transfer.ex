@@ -4,19 +4,21 @@ defmodule ExCoin.Blockchain.Transfer do
 
   ```
   %Transfer{
-    senderKey: "public key of transaction issuer",
-    recipient: "address of the recipient",
+    sender: "address (public key) of transaction issuer",
+    recipient: "address (public key) of the recipient",
     amount: 100_000,
+    nounce: "all time number of transactions made by the sender"
   }
   ```
   """
 
-  defstruct [:senderKey, :recipient, :amount]
+  defstruct ~w(sender recipient amount nounce)a
 
   @type t :: %__MODULE__{
-    senderKey: String.t,
+    sender: String.t,
     recipient: String.t,
-    amount: Integer.t
+    amount: Integer.t,
+    nounce: Integer.t,
   }
 
   alias ExCoin.Blockchain.Transfer

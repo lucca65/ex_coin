@@ -9,25 +9,42 @@ defmodule ExCoin.Blockchain.Transaction do
   ```
   %Transaction{
     transfer: %Transfer{},
-    timestamp: {1509, 931186, 658718},
-    public_key: ""
-    signature: "" # signed transaction hash
+    public_key: "Address of sender"
+    signature: "signed transaction hash"
   }
   ```
   """
 
-  defstruct [:transfer, :timestamp, :public_key, :signature]
+  defstruct [:transfer, :public_key, :signature]
 
+  alias ExCoin.Signer
   alias ExCoin.Blockchain.{Transaction, Transfer}
 
   @type t :: %__MODULE__{
     transfer: Transfer.t,
-    timestamp: {Integer.t, Integer.t, Integer.t},
     public_key: String.t,
     signature: String.t
   }
 
-  def to_string(%Transaction{public_key: pk} = transaction) do
-    "#{Transfer.to_json(transaction)}#{pk}"
+  @doc """
+  Signs a transaction using given private key
+
+  - Grab transaction transfer details
+  - Hash the transfer
+  - Sign it using private key
+  - Return whole transaction, signature included
+  """
+  def sign(%Transaction{} = transaction, private_key) do
+    signature =
+      transaction
+      |> Map.get(:transfer)
+      |> Transfer.to_json()
+      |> Signer.hash()
+      |> Signer.sign(private_key)
+
+    %{
+      transaction |
+      signature: signature,
+    }
   end
 end
